@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.Models;
+
 
 namespace WebApp
 {
@@ -23,8 +26,13 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddTransient<IProductRepository, EFProductRepository>();
+            services.AddRazorPages();
+
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(Configuration["Data:SportStoreProducts:ConnectionString"]));
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,6 +47,15 @@ namespace WebApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
+
+            app.UseDeveloperExceptionPage(); // informacje szczegó³owe o b³êdach
+            app.UseStatusCodePages(); // Wyœwietla strony ze statusem b³êdu
+            app.UseStaticFiles(); // obs³uga treœci statycznych css, images, js
+            app.UseRouting();
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -46,12 +63,14 @@ namespace WebApp
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(routes =>
             {
-                endpoints.MapControllerRoute(
+                routes.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Product}/{action=List}/{id?}");
             });
+
+
         }
     }
 }
