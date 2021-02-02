@@ -68,6 +68,15 @@ namespace WebApp
                 routes.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Product}/{action=List}/{id?}");
+
+                routes.MapControllerRoute(
+                    name: null,
+                    pattern: "Product/category",
+                    defaults: new{
+                        controller = "Product",
+                        action = "List"
+                    }
+                    );
             });
 
 
