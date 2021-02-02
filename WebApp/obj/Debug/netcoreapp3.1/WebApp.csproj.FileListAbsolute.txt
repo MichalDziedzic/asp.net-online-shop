@@ -88,3 +88,6 @@ C:\Users\Michał\Desktop\asp.net-online-shop\WebApp\obj\Debug\netcoreapp3.1\WebA
 C:\Users\Michał\Desktop\asp.net-online-shop\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Product\List.cshtml.g.cs
 C:\Users\Michał\Desktop\asp.net-online-shop\WebApp\bin\Debug\netcoreapp3.1\libman.json
 C:\Users\Michał\Desktop\asp.net-online-shop\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\NavigationMenu\Default.cshtml.g.cs
+C:\Users\Michał\Desktop\asp.net-online-shop\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Edit.cshtml.g.cs
+C:\Users\Michał\Desktop\asp.net-online-shop\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
+C:\Users\Michał\Desktop\asp.net-online-shop\WebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
