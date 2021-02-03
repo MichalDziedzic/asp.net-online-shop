@@ -31,5 +31,9 @@ namespace WebApp.Controllers
         public ViewResult ListAll() => View(productRepository.Products);
         public ViewResult List(string category) => View(productRepository.Products.Where(p => p.Category == category));
 
+        public IActionResult GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
