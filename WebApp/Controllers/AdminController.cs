@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace WebApp.Controllers
         {
             repository = repo;
         }
+        [Authorize]
         public ViewResult Index() => View(repository.Products);
         
         public ViewResult Edit(int productId) =>

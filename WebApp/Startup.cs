@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +32,10 @@ namespace WebApp
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration["Data:SportStoreProducts:ConnectionString"]));
+
+                services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
         }
 
 
@@ -48,7 +53,7 @@ namespace WebApp
                 app.UseHsts();
             }
 
-
+            app.UseAuthentication();
 
             app.UseDeveloperExceptionPage(); // informacje szczegó³owe o b³êdach
             app.UseStatusCodePages(); // Wyœwietla strony ze statusem b³êdu
